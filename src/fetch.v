@@ -1,6 +1,9 @@
 module fetch ( 
     input wire         clk,
     input wire         rst,
+    input wire         load,
+    input wire         store,
+    input wire         valid,
     input wire         branch_out,
     input wire         jal,
     input wire         jalr,
@@ -12,6 +15,9 @@ module fetch (
     pc u_pc(
         .clk(clk),
         .rst(rst),
+        .load(load),
+        .store(store),
+        .valid(valid),
         .jalr(jalr),
         .branch_jal(branch_out|jal),
         .branch_jump_address(alu_out),

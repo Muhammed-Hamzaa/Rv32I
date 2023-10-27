@@ -12,7 +12,7 @@ module ram #(
 
     reg [31:0] mem [0:255];
 
-    always @ (*) begin
+    always @ (posedge clk) begin
         read_data= mem[address];
     end
 

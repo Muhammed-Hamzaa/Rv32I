@@ -11,6 +11,7 @@ module top(
     wire [31:0]dataMem_out;
     wire request;
     wire store;
+    wire valid;
 
     ram_top u_data_mem(
         .rst(rst),
@@ -22,14 +23,14 @@ module top(
         .masking(masking),
 
         .read_data(dataMem_out),
-        .valid()
+        .valid(valid)
     );
 
     ram_top #(
         .INIT_MEM(1)
     )u_instruction_mem(
         .rst(rst),
-        .request(request),
+        .request(1'b1),
         .clk(clk),
         .address(pc_address_out[9:2]),
         .w_en(1'b0),
@@ -45,6 +46,7 @@ module top(
         .rst(rst),
         .instr_out(instr_out),
         .dataMem_out(dataMem_out),
+        .valid(valid),
 
         .pc_address_out(pc_address_out),
         .alu_out(alu_out),

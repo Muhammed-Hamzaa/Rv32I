@@ -1,6 +1,7 @@
 module core (
     input wire         clk,
     input wire         rst,
+    input wire         valid,
     input wire  [31:0] instr_out,
     input wire  [31:0] dataMem_out,
 
@@ -40,6 +41,9 @@ module core (
     fetch u_fetch(
         .clk(clk),
         .rst(rst),
+        .valid(valid),
+        .load(load),
+        .store(store),
         .branch_out(branch_out),
         .jal(jal),
         .jalr(jalr),

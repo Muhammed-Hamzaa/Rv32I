@@ -1,6 +1,9 @@
 module pc (
     input wire        clk,
     input wire        rst,
+    input wire        load,
+    input wire        store,
+    input wire        valid,
     input wire        branch_jal,
     input wire        jalr,
     input wire [31:0] jalr_address,
@@ -19,6 +22,9 @@ module pc (
         end
         else if (jalr)begin
             address_out <= jalr_address;
+        end
+        else if ((load | store) & !valid)begin
+            address_out <= address_out;
         end
         else begin
             address_out <= address_out + 32'd4;
