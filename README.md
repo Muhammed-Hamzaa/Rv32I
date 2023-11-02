@@ -1,2 +1,2 @@
 # rv32i
-% 5 stage singlecycle processor
+5 stage singlecycle processor
